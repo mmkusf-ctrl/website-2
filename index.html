@@ -126,3 +126,39 @@
 
 </body>
 </html>
+
+<script>
+  function changeQty(button, change) {
+    const qtySpan = button.parentElement.querySelector(".qty");
+    let qty = parseInt(qtySpan.textContent);
+
+    qty += change;
+    if (qty < 1) qty = 1;
+
+    qtySpan.textContent = qty;
+  }
+
+  function addToCart(name, price, button) {
+    const qty = parseInt(
+      button.parentElement.querySelector(".qty").textContent
+    );
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(item => item.name === name);
+
+    if (existing) {
+      existing.quantity += qty;
+    } else {
+      cart.push({ name, price, quantity: qty });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Reset qty to 1
+    button.parentElement.querySelector(".qty").textContent = 1;
+
+    // Update cart badge
+    if (typeof renderCart === "function") renderCart();
+  }
+</script>
