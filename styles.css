@@ -213,6 +213,20 @@ header {
   border-radius: 50%;
 }
 
+@media (max-width: 768px) {
+  .search-area {
+    display: none;
+  }
+
+  .top-header {
+    padding: 15px 20px;
+  }
+
+  .icon-btn span {
+    display: none;
+  }
+}
+
 .account-wrapper {
   position: relative;
 }
@@ -303,3 +317,4 @@ header {
   text-decoration: none;
   margin-top: 10px;
 }
+
