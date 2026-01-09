@@ -7,27 +7,29 @@
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 </head>
-  <header class="top-header">
-  <div class="logo-area">
-    <img src="assets/logo-shell.png" alt="Sync'd Logo" class="logo" />
-  </div>
-
-  <div class="search-area">
-    <input type="text" placeholder="Search here..." />
-  </div>
-
   <div class="header-actions">
-    <a href="account.html" class="icon-btn">
-      👤
-      <span>Account</span>
-    </a>
 
-    <a href="cart.html" class="icon-btn cart-btn">
-      🛒
-      <span>Cart</span>
-      <span class="cart-count" id="cartCount">0</span>
-    </a>
+  <!-- ACCOUNT -->
+  <div class="account-wrapper">
+    <button class="icon-btn" id="accountBtn">
+      👤 <span>Account</span>
+    </button>
+
+    <div class="account-dropdown" id="accountMenu">
+      <a href="profile.html">Profile</a>
+      <a href="orders.html">Orders</a>
+      <a href="#">Logout</a>
+    </div>
   </div>
+
+  <!-- CART -->
+  <button class="icon-btn cart-btn" id="cartBtn">
+    🛒 <span>Cart</span>
+    <span class="cart-count" id="cartCount">0</span>
+  </button>
+
+</div>
+
 </header>
 
 <body>
