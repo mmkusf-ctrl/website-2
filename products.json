@@ -1,0 +1,10 @@
+[
+  {
+    "id": "necklace1",
+    "name": "Pearl Drop Necklace",
+    "price": 120,
+    "category": "necklace",
+    "image": "assets/necklace1.jpg",
+    "description": "Elegant pearl necklace."
+  }
+]
