@@ -466,3 +466,37 @@ header {
   background: #4a2d1f;
   color: #fff;
 }
+
+.collection-page {
+  min-height: 100vh;
+  background: #f6f1ec;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.collection-page h2 {
+  font-size: 36px;
+  color: #4a2d1f;
+}
+
+.category-buttons {
+  display: flex;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.category-buttons a {
+  padding: 14px 36px;
+  border: 1px solid #4a2d1f;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #4a2d1f;
+  font-size: 15px;
+}
+
+.category-buttons a:hover {
+  background: #4a2d1f;
+  color: #fff;
+}
