@@ -399,3 +399,40 @@ header {
   margin-top: 6px;
   font-weight: 600;
 }
+.cart-item {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.cart-item img {
+  width: 60px;
+  border-radius: 10px;
+}
+
+.cart-item h4 {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.cart-qty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-qty button {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #4a2d1f;
+  background: none;
+  cursor: pointer;
+}
+
+.remove-item {
+  cursor: pointer;
+  font-size: 14px;
+}
