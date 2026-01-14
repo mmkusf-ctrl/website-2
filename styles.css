@@ -359,3 +359,43 @@ header {
   background: #4a2d1f;
   color: #fff;
 }
+.products-page {
+  padding: 100px 80px;
+  background: #f6f1ec;
+}
+
+.category {
+  margin-bottom: 80px;
+}
+
+.category h2 {
+  font-size: 32px;
+  color: #4a2d1f;
+  margin-bottom: 30px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}
+
+.product-card {
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.product-card h4 {
+  margin-top: 14px;
+  font-size: 16px;
+  color: #4a2d1f;
+}
+
+.price {
+  margin-top: 6px;
+  font-weight: 600;
+}
