@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Checkout | sync’d</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h2>Checkout</h2>
+
+<div class="checkout-container">
+  <div id="orderSummary"></div>
+
+  <form onsubmit="placeOrder(event)">
+    <input required placeholder="Full Name">
+    <input required placeholder="Address">
+    <input required placeholder="City">
+    <input required placeholder="Zip Code">
+    <button type="submit">Place Order</button>
+  </form>
+</div>
+
+<script>
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const summary = document.getElementById("orderSummary");
+
+  let total = 0;
+  cart.forEach(i => total += i.price * i.quantity);
+
+  summary.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
+
+  function placeOrder(e) {
+    e.preventDefault();
+
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders.push({
+      id: Date.now(),
+      date: new Date().toLocaleDateString(),
+      items: cart,
+      total
+    });
+
+    localStorage.setItem("orders", JSON.stringify(orders));
+    localStorage.removeItem("cart");
+
+    alert("Order placed successfully");
+    window.location.href = "profile.html";
+  }
+</script>
+
+</body>
+</html>
