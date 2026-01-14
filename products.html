@@ -1,106 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>sync’d | Products</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>Products | sync’d</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<header>
-  <img src="logo1.png" alt="sync’d logo" class="logo-header" />
+<!-- HEADER (reuse same header as homepage if you want) -->
+<header class="top-header">
+  <a href="index.html" class="brand">sync’d</a>
+
+  <div class="header-actions">
+    <a href="account.html" class="icon-btn">👤</a>
+    <a href="cart.html" class="icon-btn">🛒</a>
+  </div>
 </header>
 
-<main>
-  <h1 id="category-title"></h1>
-  <div class="product-grid" id="products"></div>
-</main>
+<!-- PRODUCTS -->
 
-<script>
-  const urlParams = new URLSearchParams(window.location.search);
-  const category = urlParams.get('category');
-  const categoryTitle = category ? category.toUpperCase() : 'PRODUCTS';
-  document.getElementById('category-title').textContent = categoryTitle;
+<div class="products-page">
 
-  const productsContainer = document.getElementById('products');
+  <!-- NECKLACES -->
+  <section class="category">
+    <h2>Necklaces</h2>
 
-  for (let i = 1; i <= 10; i++) {
-    const div = document.createElement('div');
-    div.className = 'product';
-    div.innerHTML = `
-      <div class="product-image"></div>
-      <p class="product-name">${categoryTitle} ${i}</p>
-    `;
-    productsContainer.appendChild(div);
-  }
-</script>
+    <div class="product-grid">
+      <div class="product-card">
+        <a href="product.html?id=necklace1">
+          <img src="assets/necklace1.jpg" />
+          <h4>Pearl Drop Necklace</h4>
+        </a>
+        <p class="price">$120</p>
+      </div>
+
+      <div class="product-card">
+        <a href="product.html?id=necklace2">
+          <img src="assets/necklace2.jpg" />
+          <h4>Minimal Gold Chain</h4>
+        </a>
+        <p class="price">$95</p>
+      </div>
+
+      <div class="product-card">
+        <a href="product.html?id=necklace3">
+          <img src="assets/necklace3.jpg" />
+          <h4>Classic Pearl Strand</h4>
+        </a>
+        <p class="price">$150</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EARRINGS -->
+  <section class="category">
+    <h2>Earrings</h2>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <a href="product.html?id=earring1">
+          <img src="assets/earring1.jpg" />
+          <h4>Pearl Stud Earrings</h4>
+        </a>
+        <p class="price">$60</p>
+      </div>
+
+      <div class="product-card">
+        <a href="product.html?id=earring2">
+          <img src="assets/earring2.jpg" />
+          <h4>Gold Hoop Earrings</h4>
+        </a>
+        <p class="price">$75</p>
+      </div>
+
+      <div class="product-card">
+        <a href="product.html?id=earring3">
+          <img src="assets/earring3.jpg" />
+          <h4>Drop Pearl Earrings</h4>
+        </a>
+        <p class="price">$90</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRACELETS -->
+  <section class="category">
+    <h2>Bracelets</h2>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <a href="product.html?id=bracelet1">
+          <img src="assets/bracelet1.jpg" />
+          <h4>Minimal Gold Bracelet</h4>
+        </a>
+        <p class="price">$85</p>
+      </div>
+
+      <div class="product-card">
+        <a href="product.html?id=bracelet2">
+          <img src="assets/bracelet2.jpg" />
+          <h4>Pearl Charm Bracelet</h4>
+        </a>
+        <p class="price">$95</p>
+      </div>
+
+      <div class="product-card">
+        <a href="product.html?id=bracelet3">
+          <img src="assets/bracelet3.jpg" />
+          <h4>Classic Chain Bracelet</h4>
+        </a>
+        <p class="price">$70</p>
+      </div>
+    </div>
+  </section>
+
+</div>
 
 </body>
 </html>
-
-<div class="product-card">
-  <img src="assets/necklace1.jpg" alt="Necklace 1" />
-
-  <h4>Necklace 1</h4>
-  <p class="price">$120</p>
-
-  <!-- Quantity Controls -->
-  <div class="qty-control">
-    <button onclick="changeQty(this, -1)">−</button>
-    <span class="qty">1</span>
-    <button onclick="changeQty(this, 1)">+</button>
-  </div>
-
-  <!-- Add to Cart -->
-  <button
-    class="add-to-cart"
-    onclick="addToCart('Necklace 1', 120, this)"
-  >
-    Add to Cart
-  </button>
-</div>
-
-<div class="product-card">
-  <img src="assets/necklace1.jpg" alt="Necklace 1" />
-
-  <h4>earrings 1</h4>
-  <p class="price">$120</p>
-
-  <!-- Quantity Controls -->
-  <div class="qty-control">
-    <button onclick="changeQty(this, -1)">−</button>
-    <span class="qty">1</span>
-    <button onclick="changeQty(this, 1)">+</button>
-  </div>
-
-  <!-- Add to Cart -->
-  <button
-    class="add-to-cart"
-    onclick="addToCart('earrings 1', 120, this)"
-  >
-    Add to Cart
-  </button>
-</div>
-
-<div class="product-card">
-  <img src="assets/necklace1.jpg" alt="Necklace 1" />
-
-  <h4>bracelet 1</h4>
-  <p class="price">$120</p>
-
-  <!-- Quantity Controls -->
-  <div class="qty-control">
-    <button onclick="changeQty(this, -1)">−</button>
-    <span class="qty">1</span>
-    <button onclick="changeQty(this, 1)">+</button>
-  </div>
-
-  <!-- Add to Cart -->
-  <button
-    class="add-to-cart"
-    onclick="addToCart('bracelet 1', 120, this)"
-  >
-    Add to Cart
-  </button>
-</div>
