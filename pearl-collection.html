@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Pearl Collection | sync’d</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="fade-in">
+
+    <header class="top-header">
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="logo1.png" alt="sync'd header logo" class="logo-header" />
+            </a>
+        </div>
+
+        <div class="header-actions">
+            <!-- ACCOUNT -->
+            <div class="account-wrapper">
+                <button class="icon-btn" id="accountBtn">
+                    👤 <span>Account</span>
+                </button>
+
+                <div class="account-dropdown" id="accountMenu">
+                    <a href="profile.html">Profile</a>
+                    <a href="orders.html">Orders</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+
+            <!-- CART -->
+            <button class="icon-btn cart-btn" id="cartBtn">
+                🛒 <span>Cart</span>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="closeCart">✕</button>
+        </div>
+
+        <div class="cart-items" id="cartItems"></div>
+
+        <div class="cart-footer">
+            <p>Total: $<span id="cartTotal">0</span></p>
+            <a href="checkout.html" class="checkout-btn">Checkout</a>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <script>
+        // ACCOUNT DROPDOWN
+        const accountBtn = document.getElementById("accountBtn");
+        const accountMenu = document.getElementById("accountMenu");
+
+        accountBtn.addEventListener("click", () => {
+            accountMenu.style.display =
+                accountMenu.style.display === "flex" ? "none" : "flex";
+        });
+
+        // CART DRAWER
+        const cartBtn = document.getElementById("cartBtn");
+        const cartDrawer = document.getElementById("cartDrawer");
+        const cartOverlay = document.getElementById("cartOverlay");
+        const closeCart = document.getElementById("closeCart");
+
+        cartBtn.onclick = () => {
+            cartDrawer.classList.add("open");
+            cartOverlay.classList.add("show");
+            renderCart();
+        };
+
+        closeCart.onclick = closeCartDrawer;
+        cartOverlay.onclick = closeCartDrawer;
+
+        function closeCartDrawer() {
+            cartDrawer.classList.remove("open");
+            cartOverlay.classList.remove("show");
+        }
+
+        // CART LOGIC
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartItems = document.getElementById("cartItems");
+            const cartTotal = document.getElementById("cartTotal");
+            const cartCount = document.getElementById("cartCount");
+
+            cartItems.innerHTML = "";
+            let total = 0;
+            let count = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                count += item.quantity;
+
+                cartItems.innerHTML += `
+        <div class="cart-item">
+          <span>${item.name} x ${item.quantity}</span>
+          <span>$${item.price * item.quantity}</span>
+        </div>
+      `;
+            });
+
+            cartTotal.textContent = total.toFixed(2);
+            cartCount.textContent = count;
+        }
+
+        renderCart();
+    </script>
+
+    <section class="collection-section pearl-section" id="pearl-collection" style="margin-top: 50px;">
+        <div class="collection-header">
+            <h2>Pearl Collection</h2>
+            <p>Timeless beauty radiating with the gentle glow of pearls.</p>
+        </div>
+        <div class="subcategory-grid">
+            <a href="products.html?category=necklace&collection=pearl" class="subcategory-card pearl-bg">
+                <div class="card-content">
+                    <h3>Necklaces</h3>
+                    <span class="view-link">Explore ➔</span>
+                </div>
+            </a>
+            <a href="products.html?category=earrings&collection=pearl" class="subcategory-card pearl-bg">
+                <div class="card-content">
+                    <h3>Earrings</h3>
+                    <span class="view-link">Explore ➔</span>
+                </div>
+            </a>
+            <a href="products.html?category=bracelet&collection=pearl" class="subcategory-card pearl-bg">
+                <div class="card-content">
+                    <h3>Bracelets</h3>
+                    <span class="view-link">Explore ➔</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // SMOOTH PAGE TRANSITIONS
+        document.addEventListener("DOMContentLoaded", () => {
+            const links = document.querySelectorAll("a[href]");
+            links.forEach(link => {
+                link.addEventListener("click", e => {
+                    const target = link.getAttribute("href");
+
+                    if (!target || target.startsWith("http") || link.target === "_blank") return;
+
+                    if (target.startsWith("#")) {
+                        e.preventDefault();
+                        const element = document.querySelector(target);
+                        if (element) {
+                            element.scrollIntoView({ behavior: "smooth" });
+                        }
+                        return;
+                    }
+
+                    if (!target.startsWith("javascript:void(0)")) {
+                        e.preventDefault();
+                        document.body.classList.remove("fade-in");
+                        document.body.classList.add("fade-out");
+                        setTimeout(() => {
+                            window.location.href = target;
+                        }, 450);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
