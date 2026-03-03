@@ -1,34 +1,67 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Profile | sync’d</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 </head>
-<body>
 
-<h2>My Orders</h2>
-<div id="orders"></div>
+<body class="fade-in">
 
-<h2>Address Book</h2>
-<div id="address">Saved addresses coming soon</div>
+  <h2>My Orders</h2>
+  <div id="orders"></div>
 
-<script>
-  const orders = JSON.parse(localStorage.getItem("orders")) || [];
-  const ordersDiv = document.getElementById("orders");
+  <h2>Address Book</h2>
+  <div id="address">Saved addresses coming soon</div>
 
-  if (!orders.length) {
-    ordersDiv.innerHTML = "<p>No orders yet.</p>";
-  }
+  <script>
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const ordersDiv = document.getElementById("orders");
 
-  orders.forEach(order => {
-    ordersDiv.innerHTML += `
+    if (!orders.length) {
+      ordersDiv.innerHTML = "<p>No orders yet.</p>";
+    }
+
+    orders.forEach(order => {
+      ordersDiv.innerHTML += `
       <div>
         <p>Order #${order.id}</p>
         <p>Date: ${order.date}</p>
         <p>Total: $${order.total}</p>
       </div>
     `;
-  });
-</script>
+    });
+  </script>
 
+  <script>
+    // SMOOTH PAGE TRANSITIONS
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll("a[href]");
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          const target = link.getAttribute("href");
+          if (!target || target.startsWith("http") || link.target === "_blank") return;
+          if (target.startsWith("#")) {
+            e.preventDefault();
+            const element = document.querySelector(target);
+            if (element) element.scrollIntoView({ behavior: "smooth" });
+            return;
+          }
+          if (!target.startsWith("javascript:void(0)")) {
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+            setTimeout(() => {
+              window.location.href = target;
+            }, 450);
+          }
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>
