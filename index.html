@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>sync’d | Luxury Jewelry</title>
@@ -7,168 +8,183 @@
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 </head>
-  <div class="header-actions">
 
-  <!-- ACCOUNT -->
-  <div class="account-wrapper">
-    <button class="icon-btn" id="accountBtn">
-      👤 <span>Account</span>
-    </button>
+<body class="fade-in">
 
-    <div class="account-dropdown" id="accountMenu">
-      <a href="profile.html">Profile</a>
-      <a href="orders.html">Orders</a>
-      <a href="#">Logout</a>
+  <header class="top-header">
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="logo1.png" alt="sync'd header logo" class="logo-header" />
+      </a>
+    </div>
+
+    <div class="header-actions">
+
+      <!-- ACCOUNT -->
+      <div class="account-wrapper">
+        <button class="icon-btn" id="accountBtn">
+          👤 <span>Account</span>
+        </button>
+
+        <div class="account-dropdown" id="accountMenu">
+          <a href="profile.html">Profile</a>
+          <a href="orders.html">Orders</a>
+          <a href="#">Logout</a>
+        </div>
+      </div>
+
+      <!-- CART -->
+      <button class="icon-btn cart-btn" id="cartBtn">
+        🛒 <span>Cart</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+
+    </div>
+  </header>
+
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button id="closeCart">✕</button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-footer">
+      <p>Total: $<span id="cartTotal">0</span></p>
+      <a href="checkout.html" class="checkout-btn">Checkout</a>
     </div>
   </div>
 
-  <!-- CART -->
-  <button class="icon-btn cart-btn" id="cartBtn">
-    🛒 <span>Cart</span>
-    <span class="cart-count" id="cartCount">0</span>
-  </button>
+  <div class="cart-overlay" id="cartOverlay"></div>
 
-</div>
+  <script>
+    // ACCOUNT DROPDOWN
+    const accountBtn = document.getElementById("accountBtn");
+    const accountMenu = document.getElementById("accountMenu");
 
-</header>
+    accountBtn.addEventListener("click", () => {
+      accountMenu.style.display =
+        accountMenu.style.display === "flex" ? "none" : "flex";
+    });
 
-  <div class="cart-drawer" id="cartDrawer">
-  <div class="cart-header">
-    <h3>Your Cart</h3>
-    <button id="closeCart">✕</button>
-  </div>
+    // CART DRAWER
+    const cartBtn = document.getElementById("cartBtn");
+    const cartDrawer = document.getElementById("cartDrawer");
+    const cartOverlay = document.getElementById("cartOverlay");
+    const closeCart = document.getElementById("closeCart");
 
-  <div class="cart-items" id="cartItems"></div>
+    cartBtn.onclick = () => {
+      cartDrawer.classList.add("open");
+      cartOverlay.classList.add("show");
+      renderCart();
+    };
 
-  <div class="cart-footer">
-    <p>Total: $<span id="cartTotal">0</span></p>
-    <a href="checkout.html" class="checkout-btn">Checkout</a>
-  </div>
-</div>
+    closeCart.onclick = closeCartDrawer;
+    cartOverlay.onclick = closeCartDrawer;
 
-<div class="cart-overlay" id="cartOverlay"></div>
+    function closeCartDrawer() {
+      cartDrawer.classList.remove("open");
+      cartOverlay.classList.remove("show");
+    }
 
-<script>
-  // ACCOUNT DROPDOWN
-  const accountBtn = document.getElementById("accountBtn");
-  const accountMenu = document.getElementById("accountMenu");
+    // CART LOGIC
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartItems = document.getElementById("cartItems");
+      const cartTotal = document.getElementById("cartTotal");
+      const cartCount = document.getElementById("cartCount");
 
-  accountBtn.addEventListener("click", () => {
-    accountMenu.style.display =
-      accountMenu.style.display === "flex" ? "none" : "flex";
-  });
+      cartItems.innerHTML = "";
+      let total = 0;
+      let count = 0;
 
-  // CART DRAWER
-  const cartBtn = document.getElementById("cartBtn");
-  const cartDrawer = document.getElementById("cartDrawer");
-  const cartOverlay = document.getElementById("cartOverlay");
-  const closeCart = document.getElementById("closeCart");
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        count += item.quantity;
 
-  cartBtn.onclick = () => {
-    cartDrawer.classList.add("open");
-    cartOverlay.classList.add("show");
-    renderCart();
-  };
-
-  closeCart.onclick = closeCartDrawer;
-  cartOverlay.onclick = closeCartDrawer;
-
-  function closeCartDrawer() {
-    cartDrawer.classList.remove("open");
-    cartOverlay.classList.remove("show");
-  }
-
-  // CART LOGIC
-  function renderCart() {
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartItems = document.getElementById("cartItems");
-    const cartTotal = document.getElementById("cartTotal");
-    const cartCount = document.getElementById("cartCount");
-
-    cartItems.innerHTML = "";
-    let total = 0;
-    let count = 0;
-
-    cart.forEach(item => {
-      total += item.price * item.quantity;
-      count += item.quantity;
-
-      cartItems.innerHTML += `
+        cartItems.innerHTML += `
         <div class="cart-item">
           <span>${item.name} x ${item.quantity}</span>
           <span>$${item.price * item.quantity}</span>
         </div>
       `;
-    });
+      });
 
-    cartTotal.textContent = total.toFixed(2);
-    cartCount.textContent = count;
-  }
-
-  renderCart();
-</script>
-
-<body>
-
-<section class="hero">
-  <div class="overlay"></div>
-
-  <div class="hero-content">
-    <img src="logo1.png" alt="sync’d logo" class="logo" />
-
-    <div class="cta">
-      <a href="products.html?category=necklace" class="btn">NECKLACE</a>
-      <a href="products.html?category=earrings" class="btn">EAR RINGS</a>
-      <a href="products.html?category=bracelet" class="btn">BRACELET</a>
-    </div>
-  </div>
-</section>
-
-</body>
-</html>
-
-<script>
-  function changeQty(button, change) {
-    const qtySpan = button.parentElement.querySelector(".qty");
-    let qty = parseInt(qtySpan.textContent);
-
-    qty += change;
-    if (qty < 1) qty = 1;
-
-    qtySpan.textContent = qty;
-  }
-
-  function addToCart(name, price, button) {
-    const qty = parseInt(
-      button.parentElement.querySelector(".qty").textContent
-    );
-
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    const existing = cart.find(item => item.name === name);
-
-    if (existing) {
-      existing.quantity += qty;
-    } else {
-      cart.push({ name, price, quantity: qty });
+      cartTotal.textContent = total.toFixed(2);
+      cartCount.textContent = count;
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  </script>
 
-    // Reset qty to 1
-    button.parentElement.querySelector(".qty").textContent = 1;
+  <section class="hero">
+    <div class="overlay"></div>
 
-    // Update cart badge
-    if (typeof renderCart === "function") renderCart();
-  }
-</script>
+    <div class="hero-content">
+      <img src="logo1.png" alt="sync’d logo" class="logo" />
 
-<section class="home-collections">
-  <h1>sync’d</h1>
-  <p class="tagline">…with your beauty</p>
+      <div class="cta">
+        <a href="#pearl-collection" class="btn">PEARL COLLECTION</a>
+        <a href="#premium-collection" class="btn">PREMIUM COLLECTION</a>
+      </div>
+    </div>
+  </section>
 
-  <div class="collection-buttons">
-    <a href="premium.html" class="collection-btn">Premium Collection</a>
-    <a href="pearl.html" class="collection-btn">Pearl Collection</a>
-  </div>
-</section>
+  <section class="collection-section" id="premium-collection">
+    <div class="collection-header">
+      <h2>Premium Collection</h2>
+      <p>Discover our most exquisite pieces, crafted for elegance and brilliance.</p>
+    </div>
+    <div class="subcategory-grid">
+      <a href="products.html?category=necklace&collection=premium" class="subcategory-card premium-bg">
+        <div class="card-content">
+          <h3>Necklaces</h3>
+          <span class="view-link">Explore ➔</span>
+        </div>
+      </a>
+      <a href="products.html?category=earrings&collection=premium" class="subcategory-card premium-bg">
+        <div class="card-content">
+          <h3>Earrings</h3>
+          <span class="view-link">Explore ➔</span>
+        </div>
+      </a>
+      <a href="products.html?category=bracelet&collection=premium" class="subcategory-card premium-bg">
+        <div class="card-content">
+          <h3>Bracelets</h3>
+          <span class="view-link">Explore ➔</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="collection-section pearl-section" id="pearl-collection">
+    <div class="collection-header">
+      <h2>Pearl Collection</h2>
+      <p>Timeless beauty radiating with the gentle glow of pearls.</p>
+    </div>
+    <div class="subcategory-grid">
+      <a href="products.html?category=necklace&collection=pearl" class="subcategory-card pearl-bg">
+        <div class="card-content">
+          <h3>Necklaces</h3>
+          <span class="view-link">Explore ➔</span>
+        </div>
+      </a>
+      <a href="products.html?category=earrings&collection=pearl" class="subcategory-card pearl-bg">
+        <div class="card-content">
+          <h3>Earrings</h3>
+          <span class="view-link">Explore ➔</span>
+        </div>
+      </a>
+      <a href="products.html?category=bracelet&collection=pearl" class="subcategory-card pearl-bg">
+        <div class="card-content">
+          <h3>Bracelets</h3>
+          <span class="view-link">Explore ➔</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</body>
+
+</html>
