@@ -1,121 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <title>Products | sync’d</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 </head>
-<body>
 
-<!-- HEADER (reuse same header as homepage if you want) -->
-<header class="top-header">
-  <a href="index.html" class="brand">sync’d</a>
+<body class="fade-in">
 
-  <div class="header-actions">
-    <a href="account.html" class="icon-btn">👤</a>
-    <a href="cart.html" class="icon-btn">🛒</a>
+  <!-- E-COMMERCE HEADER -->
+  <header class="top-header">
+    <div class="header-left">
+      <ul class="nav-links">
+        <li><a href="pearl-collection.html" class="nav-link">Shop Pearl</a></li>
+        <li><a href="premium-collection.html" class="nav-link">Shop Premium</a></li>
+        <li><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </div>
+
+    <div class="header-center logo-container">
+      <a href="index.html">
+        <img src="logo1.png" alt="sync'd header logo" class="logo-header" />
+      </a>
+    </div>
+
+    <div class="header-right header-actions">
+      <button class="icon-btn">🔍</button>
+
+      <!-- ACCOUNT -->
+      <div class="account-wrapper">
+        <button class="icon-btn" id="accountBtn">👤</button>
+
+        <div class="account-dropdown" id="accountMenu">
+          <a href="profile.html">Profile</a>
+          <a href="orders.html">Orders</a>
+          <a href="#">Logout</a>
+        </div>
+      </div>
+
+      <!-- CART -->
+      <button class="icon-btn cart-btn" id="cartBtn">
+        🛒<span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- PRODUCTS -->
+  <main class="ecommerce-collection">
+
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> <span>/</span> Shop All
+    </div>
+
+    <div class="collection-page-header">
+      <div class="collection-page-title">
+        <h1>All Jewelry</h1>
+        <p>Explore our complete catalog of luxury pieces.</p>
+      </div>
+
+      <div class="collection-toolbar">
+        <div class="toolbar-item">Filter +</div>
+        <div class="toolbar-item">Sort By ▾</div>
+      </div>
+    </div>
+
+    <div class="product-grid-v2">
+      <!-- Item 1 -->
+      <a href="product.html?id=necklace2" class="product-card-v2">
+        <div class="product-image-container">
+          <img src="logo1.png" class="product-img" style="object-fit: contain; padding: 40px;" />
+          <button class="quick-add-btn">Quick Add</button>
+        </div>
+        <div class="product-info">
+          <div class="product-info-left">
+            <h3>Minimal Gold Chain</h3>
+            <p>Premium</p>
+          </div>
+          <div class="product-price">$950</div>
+        </div>
+      </a>
+
+      <!-- Item 2 -->
+      <a href="product.html?id=earring2" class="product-card-v2">
+        <div class="product-image-container">
+          <img src="logo1.png" class="product-img" style="object-fit: contain; padding: 40px;" />
+          <button class="quick-add-btn">Quick Add</button>
+        </div>
+        <div class="product-info">
+          <div class="product-info-left">
+            <h3>Gold Hoop Earrings</h3>
+            <p>Premium</p>
+          </div>
+          <div class="product-price">$450</div>
+        </div>
+      </a>
+
+      <!-- Item 3 -->
+      <a href="product.html?id=necklace1" class="product-card-v2">
+        <div class="product-image-container">
+          <img src="logo1.png" class="product-img"
+            style="object-fit: contain; padding: 40px; filter: hue-rotate(-20deg);" />
+          <button class="quick-add-btn">Quick Add</button>
+        </div>
+        <div class="product-info">
+          <div class="product-info-left">
+            <h3>Pearl Drop Necklace</h3>
+            <p>Pearl</p>
+          </div>
+          <div class="product-price">$1,200</div>
+        </div>
+      </a>
+
+      <!-- Item 4 -->
+      <a href="product.html?id=earring1" class="product-card-v2">
+        <div class="product-image-container">
+          <img src="logo1.png" class="product-img"
+            style="object-fit: contain; padding: 40px; filter: hue-rotate(-20deg);" />
+          <button class="quick-add-btn">Quick Add</button>
+        </div>
+        <div class="product-info">
+          <div class="product-info-left">
+            <h3>Pearl Stud Earrings</h3>
+            <p>Pearl</p>
+          </div>
+          <div class="product-price">$600</div>
+        </div>
+      </a>
+    </div>
+
+  </main>
+
   </div>
-</header>
 
-<!-- PRODUCTS -->
-
-<div class="products-page">
-
-  <!-- NECKLACES -->
-  <section class="category">
-    <h2>Necklaces</h2>
-
-    <div class="product-grid">
-      <div class="product-card">
-        <a href="product.html?id=necklace1">
-          <img src="assets/necklace1.jpg" />
-          <h4>Pearl Drop Necklace</h4>
-        </a>
-        <p class="price">$120</p>
-      </div>
-
-      <div class="product-card">
-        <a href="product.html?id=necklace2">
-          <img src="assets/necklace2.jpg" />
-          <h4>Minimal Gold Chain</h4>
-        </a>
-        <p class="price">$95</p>
-      </div>
-
-      <div class="product-card">
-        <a href="product.html?id=necklace3">
-          <img src="assets/necklace3.jpg" />
-          <h4>Classic Pearl Strand</h4>
-        </a>
-        <p class="price">$150</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- EARRINGS -->
-  <section class="category">
-    <h2>Earrings</h2>
-
-    <div class="product-grid">
-      <div class="product-card">
-        <a href="product.html?id=earring1">
-          <img src="assets/earring1.jpg" />
-          <h4>Pearl Stud Earrings</h4>
-        </a>
-        <p class="price">$60</p>
-      </div>
-
-      <div class="product-card">
-        <a href="product.html?id=earring2">
-          <img src="assets/earring2.jpg" />
-          <h4>Gold Hoop Earrings</h4>
-        </a>
-        <p class="price">$75</p>
-      </div>
-
-      <div class="product-card">
-        <a href="product.html?id=earring3">
-          <img src="assets/earring3.jpg" />
-          <h4>Drop Pearl Earrings</h4>
-        </a>
-        <p class="price">$90</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- BRACELETS -->
-  <section class="category">
-    <h2>Bracelets</h2>
-
-    <div class="product-grid">
-      <div class="product-card">
-        <a href="product.html?id=bracelet1">
-          <img src="assets/bracelet1.jpg" />
-          <h4>Minimal Gold Bracelet</h4>
-        </a>
-        <p class="price">$85</p>
-      </div>
-
-      <div class="product-card">
-        <a href="product.html?id=bracelet2">
-          <img src="assets/bracelet2.jpg" />
-          <h4>Pearl Charm Bracelet</h4>
-        </a>
-        <p class="price">$95</p>
-      </div>
-
-      <div class="product-card">
-        <a href="product.html?id=bracelet3">
-          <img src="assets/bracelet3.jpg" />
-          <h4>Classic Chain Bracelet</h4>
-        </a>
-        <p class="price">$70</p>
-      </div>
-    </div>
-  </section>
-
-</div>
-
+  <script>
+    // SMOOTH PAGE TRANSITIONS
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll("a[href]");
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          const target = link.getAttribute("href");
+          if (!target || target.startsWith("http") || link.target === "_blank") return;
+          if (target.startsWith("#")) {
+            e.preventDefault();
+            const element = document.querySelector(target);
+            if (element) element.scrollIntoView({ behavior: "smooth" });
+            return;
+          }
+          if (!target.startsWith("javascript:void(0)")) {
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+            setTimeout(() => {
+              window.location.href = target;
+            }, 450);
+          }
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>
