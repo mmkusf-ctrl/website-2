@@ -1,52 +1,84 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Checkout | sync’d</title>
   <link rel="stylesheet" href="styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 </head>
-<body>
 
-<h2>Checkout</h2>
+<body class="fade-in">
 
-<div class="checkout-container">
-  <div id="orderSummary"></div>
+  <h2>Checkout</h2>
 
-  <form onsubmit="placeOrder(event)">
-    <input required placeholder="Full Name">
-    <input required placeholder="Address">
-    <input required placeholder="City">
-    <input required placeholder="Zip Code">
-    <button type="submit">Place Order</button>
-  </form>
-</div>
+  <div class="checkout-container">
+    <div id="orderSummary"></div>
 
-<script>
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const summary = document.getElementById("orderSummary");
+    <form onsubmit="placeOrder(event)">
+      <input required placeholder="Full Name">
+      <input required placeholder="Address">
+      <input required placeholder="City">
+      <input required placeholder="Zip Code">
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
 
-  let total = 0;
-  cart.forEach(i => total += i.price * i.quantity);
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const summary = document.getElementById("orderSummary");
 
-  summary.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
+    let total = 0;
+    cart.forEach(i => total += i.price * i.quantity);
 
-  function placeOrder(e) {
-    e.preventDefault();
+    summary.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
 
-    const orders = JSON.parse(localStorage.getItem("orders")) || [];
-    orders.push({
-      id: Date.now(),
-      date: new Date().toLocaleDateString(),
-      items: cart,
-      total
+    function placeOrder(e) {
+      e.preventDefault();
+
+      const orders = JSON.parse(localStorage.getItem("orders")) || [];
+      orders.push({
+        id: Date.now(),
+        date: new Date().toLocaleDateString(),
+        items: cart,
+        total
+      });
+
+      localStorage.setItem("orders", JSON.stringify(orders));
+      localStorage.removeItem("cart");
+
+      alert("Order placed successfully");
+      window.location.href = "profile.html";
+    }
+  </script>
+
+  <script>
+    // SMOOTH PAGE TRANSITIONS
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll("a[href]");
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          const target = link.getAttribute("href");
+          if (!target || target.startsWith("http") || link.target === "_blank") return;
+          if (target.startsWith("#")) {
+            e.preventDefault();
+            const element = document.querySelector(target);
+            if (element) element.scrollIntoView({ behavior: "smooth" });
+            return;
+          }
+          if (!target.startsWith("javascript:void(0)")) {
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+            setTimeout(() => {
+              window.location.href = target;
+            }, 450);
+          }
+        });
+      });
     });
-
-    localStorage.setItem("orders", JSON.stringify(orders));
-    localStorage.removeItem("cart");
-
-    alert("Order placed successfully");
-    window.location.href = "profile.html";
-  }
-</script>
-
+  </script>
 </body>
+
 </html>
