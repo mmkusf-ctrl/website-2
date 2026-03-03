@@ -6,7 +6,9 @@
   <title>sync’d | Luxury Jewelry</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 </head>
 
 <body class="fade-in">
@@ -125,65 +127,13 @@
       <img src="logo1.png" alt="sync’d logo" class="logo" />
 
       <div class="cta">
-        <a href="#pearl-collection" class="btn">PEARL COLLECTION</a>
-        <a href="#premium-collection" class="btn">PREMIUM COLLECTION</a>
+        <a href="pearl-collection.html" class="btn">PEARL COLLECTION</a>
+        <a href="premium-collection.html" class="btn">PREMIUM COLLECTION</a>
       </div>
     </div>
   </section>
 
-  <section class="collection-section" id="premium-collection">
-    <div class="collection-header">
-      <h2>Premium Collection</h2>
-      <p>Discover our most exquisite pieces, crafted for elegance and brilliance.</p>
-    </div>
-    <div class="subcategory-grid">
-      <a href="products.html?category=necklace&collection=premium" class="subcategory-card premium-bg">
-        <div class="card-content">
-          <h3>Necklaces</h3>
-          <span class="view-link">Explore ➔</span>
-        </div>
-      </a>
-      <a href="products.html?category=earrings&collection=premium" class="subcategory-card premium-bg">
-        <div class="card-content">
-          <h3>Earrings</h3>
-          <span class="view-link">Explore ➔</span>
-        </div>
-      </a>
-      <a href="products.html?category=bracelet&collection=premium" class="subcategory-card premium-bg">
-        <div class="card-content">
-          <h3>Bracelets</h3>
-          <span class="view-link">Explore ➔</span>
-        </div>
-      </a>
-    </div>
-  </section>
 
-  <section class="collection-section pearl-section" id="pearl-collection">
-    <div class="collection-header">
-      <h2>Pearl Collection</h2>
-      <p>Timeless beauty radiating with the gentle glow of pearls.</p>
-    </div>
-    <div class="subcategory-grid">
-      <a href="products.html?category=necklace&collection=pearl" class="subcategory-card pearl-bg">
-        <div class="card-content">
-          <h3>Necklaces</h3>
-          <span class="view-link">Explore ➔</span>
-        </div>
-      </a>
-      <a href="products.html?category=earrings&collection=pearl" class="subcategory-card pearl-bg">
-        <div class="card-content">
-          <h3>Earrings</h3>
-          <span class="view-link">Explore ➔</span>
-        </div>
-      </a>
-      <a href="products.html?category=bracelet&collection=pearl" class="subcategory-card pearl-bg">
-        <div class="card-content">
-          <h3>Bracelets</h3>
-          <span class="view-link">Explore ➔</span>
-        </div>
-      </a>
-    </div>
-  </section>
 
   <script>
     // SMOOTH PAGE TRANSITIONS
@@ -192,10 +142,10 @@
       links.forEach(link => {
         link.addEventListener("click", e => {
           const target = link.getAttribute("href");
-          
+
           // Skip external links, new tabs, or empty links
-          if (!target || target.startsWith("http") || link.target === "_blank") return; 
-          
+          if (!target || target.startsWith("http") || link.target === "_blank") return;
+
           if (target.startsWith("#")) {
             // Smooth scroll internal anchor links
             e.preventDefault();
@@ -205,7 +155,7 @@
             }
             return;
           }
-          
+
           if (!target.startsWith("javascript:void(0)")) {
             // Handle regular page navigation with fade-out
             e.preventDefault();
