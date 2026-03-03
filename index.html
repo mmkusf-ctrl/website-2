@@ -6,7 +6,7 @@
   <title>sync’d | Luxury Jewelry</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 
 <body class="fade-in">
@@ -185,6 +185,40 @@
     </div>
   </section>
 
+  <script>
+    // SMOOTH PAGE TRANSITIONS
+    document.addEventListener("DOMContentLoaded", () => {
+      const links = document.querySelectorAll("a[href]");
+      links.forEach(link => {
+        link.addEventListener("click", e => {
+          const target = link.getAttribute("href");
+          
+          // Skip external links, new tabs, or empty links
+          if (!target || target.startsWith("http") || link.target === "_blank") return; 
+          
+          if (target.startsWith("#")) {
+            // Smooth scroll internal anchor links
+            e.preventDefault();
+            const element = document.querySelector(target);
+            if (element) {
+              element.scrollIntoView({ behavior: "smooth" });
+            }
+            return;
+          }
+          
+          if (!target.startsWith("javascript:void(0)")) {
+            // Handle regular page navigation with fade-out
+            e.preventDefault();
+            document.body.classList.remove("fade-in");
+            document.body.classList.add("fade-out");
+            setTimeout(() => {
+              window.location.href = target;
+            }, 450); // Slightly less than transition duration to ensure smoothness
+          }
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
