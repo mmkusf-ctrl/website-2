@@ -13,21 +13,33 @@
 
 <body class="fade-in">
 
+  <!-- E-COMMERCE HEADER -->
   <header class="top-header">
-    <div class="logo-container">
+    <div class="header-left">
+      <ul class="nav-links">
+        <li><a href="pearl-collection.html" class="nav-link">Shop Pearl</a></li>
+        <li><a href="premium-collection.html" class="nav-link">Shop Premium</a></li>
+        <li><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </div>
+
+    <div class="header-center logo-container">
       <a href="index.html">
         <img src="logo1.png" alt="sync'd header logo" class="logo-header" />
       </a>
     </div>
 
-    <div class="header-actions">
+    <div class="header-right header-actions">
+      <!-- Search (Visual Only) -->
+      <button class="icon-btn">
+        🔍
+      </button>
 
       <!-- ACCOUNT -->
       <div class="account-wrapper">
         <button class="icon-btn" id="accountBtn">
-          👤 <span>Account</span>
+          👤
         </button>
-
         <div class="account-dropdown" id="accountMenu">
           <a href="profile.html">Profile</a>
           <a href="orders.html">Orders</a>
@@ -37,10 +49,9 @@
 
       <!-- CART -->
       <button class="icon-btn cart-btn" id="cartBtn">
-        🛒 <span>Cart</span>
+        🛒
         <span class="cart-count" id="cartCount">0</span>
       </button>
-
     </div>
   </header>
 
@@ -120,15 +131,18 @@
     renderCart();
   </script>
 
-  <section class="hero">
-    <div class="overlay"></div>
-
-    <div class="hero-content">
-      <img src="logo1.png" alt="sync’d logo" class="logo" />
-
-      <div class="cta">
-        <a href="pearl-collection.html" class="btn">PEARL COLLECTION</a>
-        <a href="premium-collection.html" class="btn">PREMIUM COLLECTION</a>
+  <section class="hero-ecommerce">
+    <div class="hero-images">
+      <!-- To mimic high end split screen or full bleed -->
+      <div class="hero-split-left"></div>
+      <div class="hero-split-right"></div>
+    </div>
+    <div class="hero-overlay-center">
+      <h1 class="hero-title">Timeless Radiance</h1>
+      <p class="hero-subtitle">Discover pieces crafted for eternity.</p>
+      <div class="hero-cta-group">
+        <a href="pearl-collection.html" class="btn-primary">The Pearl Edit</a>
+        <a href="premium-collection.html" class="btn-secondary">Premium Collection</a>
       </div>
     </div>
   </section>
