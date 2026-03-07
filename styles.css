@@ -911,6 +911,7 @@ header {
   align-items: center;
   justify-content: center;
   padding-top: 100px;
+  background: url("hero-background.jpg.jpg") center/cover no-repeat;
 }
 
 .home-center-content {
