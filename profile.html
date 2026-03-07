@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-  <title>Profile | sync’d</title>
+  <meta charset="UTF-8" />
+  <title>Account | sync’d</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
     rel="stylesheet">
 </head>
 
-<body class="fade-in">
+<body class="fade-in account-page-body has-auth-bg">
 
   <!-- minimalist HEADER -->
   <header class="top-header minimalist"
-    style="position: relative; border-bottom: 1px solid #eaeaea; padding: 20px 40px;">
+    style="position: relative; border-bottom: none; padding: 20px 40px; z-index: 10;">
     <div class="header-left">
       <a href="index.html"
         style="text-decoration: none; font-family: 'Playfair Display', serif; font-size: 24px; color: #000; font-weight: 700; display: flex; align-items: center; gap: 10px;">
@@ -22,56 +24,75 @@
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
-        BACK
+        BACK TO STORE
       </a>
-    </div>
-
-    <div class="header-center search-container">
-      <div class="search-pill">
-        <input type="text" placeholder="SEARCH..." />
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </div>
-    </div>
-
-    <div class="header-right header-actions">
-      <!-- ACCOUNT -->
-      <div class="account-wrapper">
-        <button class="icon-btn-vertical" id="accountBtn">
-          <svg class="icon icon-account" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-            width="30" height="30">
-            <path
-              d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm0 12c-4.418 0-8 3.582-8 8v1h16v-1c0-4.418-3.582-8-8-8z" />
-          </svg>
-          <span class="label">ACCOUNT</span>
-        </button>
-        <div class="account-dropdown" id="accountMenu">
-          <a href="profile.html">Profile</a>
-          <a href="orders.html">Orders</a>
-          <a href="#">Logout</a>
-        </div>
-      </div>
-
-      <!-- CART -->
-      <button class="icon-btn-vertical cart-btn" id="cartBtn">
-        <div class="cart-icon-wrapper">
-          <svg class="icon icon-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="30" height="30">
-            <circle cx="9" cy="21" r="1.5"></circle>
-            <circle cx="20" cy="21" r="1.5"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-          </svg>
-          <span class="cart-count" id="cartCount">0</span>
-        </div>
-        <span class="label">CART</span>
-      </button>
     </div>
   </header>
 
-  <main class="profile-page">
+  <!-- AUTHENTICATION VIEW (Default) -->
+  <main class="account-main" id="authView">
+    <div class="account-container" id="accountContainer">
+      <!-- SIGN UP FORM -->
+      <div class="form-container sign-up-container">
+        <form id="registerForm">
+          <h2>Create Account</h2>
+          <p class="subtitle">Join sync'd for exclusive access to premium collections.</p>
+          <div class="input-group">
+            <input type="text" placeholder="First Name" required />
+          </div>
+          <div class="input-group">
+            <input type="text" placeholder="Last Name" required />
+          </div>
+          <div class="input-group">
+            <input type="email" placeholder="Email Address" required />
+          </div>
+          <div class="input-group">
+            <input type="password" placeholder="Password" required />
+          </div>
+          <button type="submit" class="auth-btn">Sign Up</button>
+          <!-- Mobile only switcher -->
+          <p class="mobile-switch">Already have an account? <a href="#" id="mobileSignIn">Sign In</a></p>
+        </form>
+      </div>
+
+      <!-- SIGN IN FORM -->
+      <div class="form-container sign-in-container">
+        <form id="loginForm">
+          <h2>Sign In</h2>
+          <p class="subtitle">Welcome back to your sync'd profile.</p>
+          <div class="input-group">
+            <input type="email" placeholder="Email Address" required />
+          </div>
+          <div class="input-group">
+            <input type="password" placeholder="Password" required />
+          </div>
+          <a href="#" class="forgot-password">Forgot your password?</a>
+          <button type="submit" class="auth-btn">Sign In</button>
+          <!-- Mobile only switcher -->
+          <p class="mobile-switch">New to sync'd? <a href="#" id="mobileSignUp">Create Account</a></p>
+        </form>
+      </div>
+
+      <!-- OVERLAY SLIDER -->
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h2>Welcome Back!</h2>
+            <p>To keep connected with us please login with your personal info</p>
+            <button class="ghost-btn" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h2>Hello, Friend!</h2>
+            <p>Enter your personal details and start your journey with us</p>
+            <button class="ghost-btn" id="signUp">Create Account</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- DASHBOARD VIEW (Hidden by default) -->
+  <main class="profile-page" id="dashboardView" style="display: none; padding-top: 40px;">
     <div class="profile-container">
       <aside class="profile-sidebar">
         <div class="user-greeting">
@@ -84,7 +105,7 @@
           <a href="#">Order History</a>
           <a href="#">Address Book</a>
           <a href="#">Payment Methods</a>
-          <a href="#" class="logout">Log Out</a>
+          <a href="#" class="logout" id="logoutBtn">Log Out</a>
         </nav>
       </aside>
 
@@ -132,58 +153,126 @@
   </main>
 
   <script>
-    // USER MENU LOGIC
-    const accountBtn = document.getElementById("accountBtn");
-    const accountMenu = document.getElementById("accountMenu");
+    // DOM ELEMENTS
+    const authView = document.getElementById('authView');
+    const dashboardView = document.getElementById('dashboardView');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const accountBody = document.querySelector('.account-page-body');
 
-    accountBtn.addEventListener("click", () => {
-      accountMenu.style.display =
-        accountMenu.style.display === "flex" ? "none" : "flex";
+    // SLIDER LOGIC
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('accountContainer');
+
+    const mobileSignUp = document.getElementById('mobileSignUp');
+    const mobileSignIn = document.getElementById('mobileSignIn');
+
+    signUpButton.addEventListener('click', () => {
+      container.classList.add("right-panel-active");
     });
 
-    const orders = JSON.parse(localStorage.getItem("orders")) || [];
-    const ordersDiv = document.getElementById("orders");
+    signInButton.addEventListener('click', () => {
+      container.classList.remove("right-panel-active");
+    });
 
-    if (!orders.length) {
-      ordersDiv.innerHTML = `
-        <div class="empty-state">
-          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
-          <p>No orders yet.</p>
-          <a href="index.html" class="shop-now-link">Shop Now</a>
-        </div>
-      `;
+    mobileSignUp.addEventListener('click', (e) => {
+      e.preventDefault();
+      container.classList.add("right-panel-active");
+    });
+
+    mobileSignIn.addEventListener('click', (e) => {
+      e.preventDefault();
+      container.classList.remove("right-panel-active");
+    });
+
+    // VIEW TOGGLING LOGIC
+    function showDashboard(e) {
+      e.preventDefault();
+      // Add fade out animation
+      authView.style.opacity = '0';
+
+      setTimeout(() => {
+        authView.style.display = 'none';
+        dashboardView.style.display = 'block';
+        accountBody.classList.remove('has-auth-bg');
+
+        // Add fade in animation to dashboard
+        dashboardView.style.opacity = '0';
+        dashboardView.style.transition = 'opacity 0.5s ease-in-out';
+        setTimeout(() => {
+          dashboardView.style.opacity = '1';
+        }, 50);
+
+        renderOrders();
+      }, 500); // Wait for fade out
+
+      authView.style.transition = 'opacity 0.5s ease-in-out';
     }
 
-    orders.slice(0, 3).forEach(order => {
-      ordersDiv.innerHTML += `
-      <div class="order-item">
-        <div class="order-info">
-          <p class="order-id">Order #${order.id}</p>
-          <p class="order-date">${order.date}</p>
-        </div>
-        <div class="order-total">
-          <p>$${order.total}</p>
-          <span class="order-status completed">Completed</span>
-        </div>
-      </div>
-    `;
-    });
-  </script>
+    function showAuth(e) {
+      if (e) e.preventDefault();
 
-  <script>
+      dashboardView.style.opacity = '0';
+
+      setTimeout(() => {
+        dashboardView.style.display = 'none';
+        authView.style.display = 'flex';
+        accountBody.classList.add('has-auth-bg');
+
+        authView.style.opacity = '0';
+        setTimeout(() => {
+          authView.style.opacity = '1';
+        }, 50);
+      }, 500);
+    }
+
+    loginForm.addEventListener('submit', showDashboard);
+    registerForm.addEventListener('submit', showDashboard);
+    logoutBtn.addEventListener('click', showAuth);
+
+    // ORDERS RENDERING LOGIC
+    function renderOrders() {
+      const orders = JSON.parse(localStorage.getItem("orders")) || [];
+      const ordersDiv = document.getElementById("orders");
+
+      if (!orders.length) {
+        ordersDiv.innerHTML = `
+                <div class="empty-state">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+                  <p>No orders yet.</p>
+                  <a href="index.html" class="shop-now-link">Shop Now</a>
+                </div>
+              `;
+      } else {
+        ordersDiv.innerHTML = '';
+        orders.slice(0, 3).forEach(order => {
+          ordersDiv.innerHTML += `
+                <div class="order-item">
+                    <div class="order-info">
+                    <p class="order-id">Order #${order.id}</p>
+                    <p class="order-date">${order.date}</p>
+                    </div>
+                    <div class="order-total">
+                    <p>$${order.total}</p>
+                    <span class="order-status completed">Completed</span>
+                    </div>
+                </div>
+                `;
+        });
+      }
+    }
+
     // SMOOTH PAGE TRANSITIONS
     document.addEventListener("DOMContentLoaded", () => {
       const links = document.querySelectorAll("a[href]");
       links.forEach(link => {
         link.addEventListener("click", e => {
           const target = link.getAttribute("href");
+
           if (!target || target.startsWith("http") || link.target === "_blank" || target === "#") return;
-          if (target.startsWith("#")) {
-            e.preventDefault();
-            const element = document.querySelector(target);
-            if (element) element.scrollIntoView({ behavior: "smooth" });
-            return;
-          }
+
           if (!target.startsWith("javascript:void(0)")) {
             e.preventDefault();
             document.body.classList.remove("fade-in");
