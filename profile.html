@@ -11,26 +11,160 @@
 
 <body class="fade-in">
 
-  <h2>My Orders</h2>
-  <div id="orders"></div>
+  <!-- minimalist HEADER -->
+  <header class="top-header minimalist"
+    style="position: relative; border-bottom: 1px solid #eaeaea; padding: 20px 40px;">
+    <div class="header-left">
+      <a href="index.html"
+        style="text-decoration: none; font-family: 'Playfair Display', serif; font-size: 24px; color: #000; font-weight: 700; display: flex; align-items: center; gap: 10px;">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        BACK
+      </a>
+    </div>
 
-  <h2>Address Book</h2>
-  <div id="address">Saved addresses coming soon</div>
+    <div class="header-center search-container">
+      <div class="search-pill">
+        <input type="text" placeholder="SEARCH..." />
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </div>
+    </div>
+
+    <div class="header-right header-actions">
+      <!-- ACCOUNT -->
+      <div class="account-wrapper">
+        <button class="icon-btn-vertical" id="accountBtn">
+          <svg class="icon icon-account" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+            width="30" height="30">
+            <path
+              d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zm0 12c-4.418 0-8 3.582-8 8v1h16v-1c0-4.418-3.582-8-8-8z" />
+          </svg>
+          <span class="label">ACCOUNT</span>
+        </button>
+        <div class="account-dropdown" id="accountMenu">
+          <a href="profile.html">Profile</a>
+          <a href="orders.html">Orders</a>
+          <a href="#">Logout</a>
+        </div>
+      </div>
+
+      <!-- CART -->
+      <button class="icon-btn-vertical cart-btn" id="cartBtn">
+        <div class="cart-icon-wrapper">
+          <svg class="icon icon-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="#e63946" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="30" height="30">
+            <circle cx="9" cy="21" r="1.5"></circle>
+            <circle cx="20" cy="21" r="1.5"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </div>
+        <span class="label">CART</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="profile-page">
+    <div class="profile-container">
+      <aside class="profile-sidebar">
+        <div class="user-greeting">
+          <div class="user-avatar">AD</div>
+          <h3>Amanda Doe</h3>
+          <p>Member since 2024</p>
+        </div>
+        <nav class="profile-nav">
+          <a href="#" class="active">My Profile</a>
+          <a href="#">Order History</a>
+          <a href="#">Address Book</a>
+          <a href="#">Payment Methods</a>
+          <a href="#" class="logout">Log Out</a>
+        </nav>
+      </aside>
+
+      <section class="profile-content">
+        <div class="profile-header">
+          <h2>Overview</h2>
+          <p>Manage your account details and preferences.</p>
+        </div>
+
+        <div class="profile-grid">
+          <div class="profile-card">
+            <div class="card-header">
+              <h3>Personal Information</h3>
+              <button class="edit-btn">Edit</button>
+            </div>
+            <div class="card-body">
+              <p><strong>Name:</strong> Amanda Doe</p>
+              <p><strong>Email:</strong> amanda.doe@example.com</p>
+              <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+            </div>
+          </div>
+
+          <div class="profile-card">
+            <div class="card-header">
+              <h3>Security</h3>
+              <button class="edit-btn">Update</button>
+            </div>
+            <div class="card-body">
+              <p><strong>Password:</strong> ••••••••</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="recent-orders-preview">
+          <div class="card-header">
+            <h3>Recent Orders</h3>
+            <a href="#" class="view-all-link">View All</a>
+          </div>
+          <div class="orders-list" id="orders">
+            <!-- Dynamic Orders go here -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <script>
+    // USER MENU LOGIC
+    const accountBtn = document.getElementById("accountBtn");
+    const accountMenu = document.getElementById("accountMenu");
+
+    accountBtn.addEventListener("click", () => {
+      accountMenu.style.display =
+        accountMenu.style.display === "flex" ? "none" : "flex";
+    });
+
     const orders = JSON.parse(localStorage.getItem("orders")) || [];
     const ordersDiv = document.getElementById("orders");
 
     if (!orders.length) {
-      ordersDiv.innerHTML = "<p>No orders yet.</p>";
+      ordersDiv.innerHTML = `
+        <div class="empty-state">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" stroke="#ccc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <p>No orders yet.</p>
+          <a href="index.html" class="shop-now-link">Shop Now</a>
+        </div>
+      `;
     }
 
-    orders.forEach(order => {
+    orders.slice(0, 3).forEach(order => {
       ordersDiv.innerHTML += `
-      <div>
-        <p>Order #${order.id}</p>
-        <p>Date: ${order.date}</p>
-        <p>Total: $${order.total}</p>
+      <div class="order-item">
+        <div class="order-info">
+          <p class="order-id">Order #${order.id}</p>
+          <p class="order-date">${order.date}</p>
+        </div>
+        <div class="order-total">
+          <p>$${order.total}</p>
+          <span class="order-status completed">Completed</span>
+        </div>
       </div>
     `;
     });
@@ -43,7 +177,7 @@
       links.forEach(link => {
         link.addEventListener("click", e => {
           const target = link.getAttribute("href");
-          if (!target || target.startsWith("http") || link.target === "_blank") return;
+          if (!target || target.startsWith("http") || link.target === "_blank" || target === "#") return;
           if (target.startsWith("#")) {
             e.preventDefault();
             const element = document.querySelector(target);
